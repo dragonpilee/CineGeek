@@ -11,6 +11,8 @@
 
 Welcome to **CineGeek**! Your ultimate destination for everything related to movies and series.
 
+> If you find this project helpful, please consider ⭐ [starring the repository](https://github.com/dragonpilee/cinegeek)!
+
 ---
 
 ## 🎬 About
