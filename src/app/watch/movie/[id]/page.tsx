@@ -7,7 +7,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export default function WatchPage({ params }: { params: { id: string } }) {
     const router = useRouter();
-    const videoUrl = `https://vidsrc.cc/v2/embed/movie/${params.id}`;
+    const videoUrl = `https://vsrc.su/embed/movie/${params.id}`;
     const [history, setHistory] = useLocalStorage<any[]>('watchHistory', []);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function WatchPage({ params }: { params: { id: string } }) {
         });
 
         const handleMessage = (event: MessageEvent) => {
-            if (event.origin !== 'https://vidsrc.cc') return;
+            if (event.origin !== 'https://vsrc.su') return;
             if (event.data && event.data.type === 'PLAYER_EVENT') {
                 const { event: eventType, currentTime, duration } = event.data.data;
                 console.log(`Player ${eventType} at ${currentTime}s of ${duration}s`);

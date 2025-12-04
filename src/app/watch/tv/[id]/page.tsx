@@ -25,7 +25,7 @@ export default function WatchSeriesPage({ params }: { params: { id: string } }) 
     const [seasons, setSeasons] = useState<Season[]>([]);
     const [episodes, setEpisodes] = useState<Episode[]>([]);
 
-    const videoUrl = `https://vidsrc.cc/v2/embed/tv/${params.id}/${season}/${episode}`;
+    const videoUrl = `https://vsrc.su/embed/tv/${params.id}/${season}/${episode}`;
     const [history, setHistory] = useLocalStorage<any[]>('watchHistory', []);
 
     useEffect(() => {
@@ -71,7 +71,7 @@ export default function WatchSeriesPage({ params }: { params: { id: string } }) 
         });
 
         const handleMessage = (event: MessageEvent) => {
-            if (event.origin !== 'https://vidsrc.cc') return;
+            if (event.origin !== 'https://vsrc.su') return;
             if (event.data && event.data.type === 'PLAYER_EVENT') {
                 const { event: eventType, currentTime, duration } = event.data.data;
                 console.log(`Player ${eventType} at ${currentTime}s of ${duration}s`);
