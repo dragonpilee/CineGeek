@@ -40,7 +40,13 @@ export default function MovieDetailsPage({ params }: { params: { id: string } })
         fetchData();
     }, [params.id]);
 
-    if (loading) return <div className="text-white p-8">Loading...</div>;
+    if (loading) {
+        return (
+            <TVLayout>
+                <div className="relative w-full min-h-screen bg-zinc-900 pb-20" />
+            </TVLayout>
+        );
+    }
     if (!movie) return <div className="text-white p-8">Movie not found</div>;
 
     // Find Trailer
