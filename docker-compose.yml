@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  firegeek:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: firegeek
+    ports:
+      - "3000:3000"
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    restart: always
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1280

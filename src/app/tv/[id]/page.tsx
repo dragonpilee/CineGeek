@@ -1,0 +1,91 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import TVLayout from '@/components/TVLayout';
+import { Play } from 'lucide-react';
+import Link from 'next/link';
+
+export default function SeriesDetailsPage({ params }: { params: { id: string } }) {
+    const [series, setSeries] = useState<any>(null);
+    const [videos, setVideos] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [seriesRes, videosRes] = await Promise.all([
+                    fetch(`/api/tmdb/tv/${params.id}`),
+                    fetch(`/api/tmdb/tv/${params.id}/videos`)
+                ]);
+
+                const seriesData = await seriesRes.json();
+                const videosData = await videosRes.json();
+
+                setSeries(seriesData);
+                setVideos(videosData.results || []);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [params.id]);
+
+    if (loading) return <div className="text-white p-8">Loading...</div>;
+    if (!series) return <div className="text-white p-8">Series not found</div>;
+
+    // Find Trailer
+    const trailer = videos.find(v => v.type === "Trailer" && v.site === "YouTube") || videos[0];
+
+    return (
+        <TVLayout>
+            <div className="relative w-full min-h-screen bg-zinc-900 pb-20">
+                {/* Trailer / Hero Background */}
+                <div className="relative w-full h-[60vh] lg:h-[70vh]">
+                    {trailer ? (
+                        <iframe
+                            className="w-full h-full object-cover pointer-events-none"
+                            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailer.key}&modestbranding=1&rel=0`}
+                            allow="autoplay; encrypted-media"
+                            title="Trailer"
+                        />
+                    ) : (
+                        <img
+                            src={`https://image.tmdb.org/t/p/original${series.backdrop_path}`}
+                            alt={series.name}
+                            className="w-full h-full object-cover"
+                        />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/60 to-transparent" />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-end pb-12 px-12 lg:px-24 pointer-events-none">
+                    <div className="pointer-events-auto max-w-3xl mb-12 mt-[40vh]">
+                        <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">{series.name}</h1>
+
+                        <div className="flex items-center gap-4 text-zinc-300 mb-6 text-sm font-medium">
+                            <span className="text-green-400 font-bold">{Math.round(series.vote_average * 10)}% Match</span>
+                            <span>{new Date(series.first_air_date).getFullYear()}</span>
+                            <span className="border border-zinc-600 px-2 py-0.5 rounded text-xs">HD</span>
+                            <span>{series.number_of_seasons} Seasons</span>
+                        </div>
+
+                        <p className="text-lg text-zinc-200 mb-8 line-clamp-3 drop-shadow-md">{series.overview}</p>
+
+                        <div className="flex gap-4">
+                            <Link
+                                href={`/watch/tv/${series.id}`}
+                                className="flex items-center gap-2 bg-white text-black px-8 py-3 rounded-lg font-bold text-xl hover:bg-zinc-200 focus:bg-red-600 focus:text-white transition-colors"
+                            >
+                                <Play fill="currentColor" /> Play
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TVLayout>
+    );
+}
