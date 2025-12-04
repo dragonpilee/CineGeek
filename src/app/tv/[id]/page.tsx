@@ -75,13 +75,28 @@ export default function SeriesDetailsPage({ params }: { params: { id: string } }
 
                         <p className="text-lg text-zinc-200 mb-8 line-clamp-3 drop-shadow-md">{series.overview}</p>
 
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 mb-8">
                             <Link
                                 href={`/watch/tv/${series.id}`}
                                 className="flex items-center gap-2 bg-white text-black px-8 py-3 rounded-lg font-bold text-xl hover:bg-zinc-200 focus:bg-red-600 focus:text-white transition-colors"
                             >
                                 <Play fill="currentColor" /> Play
                             </Link>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 text-xs text-zinc-400">
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Genres</span>
+                                <span className="text-white">{series.genres?.map((g: any) => g.name).join(', ')}</span>
+                            </div>
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Language</span>
+                                <span className="text-white uppercase">{series.original_language}</span>
+                            </div>
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Production</span>
+                                <span className="text-white">{series.production_companies?.slice(0, 2).map((c: any) => c.name).join(', ')}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

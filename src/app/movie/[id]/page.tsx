@@ -83,7 +83,7 @@ export default function MovieDetailsPage({ params }: { params: { id: string } })
 
                         <p className="text-lg text-zinc-200 mb-8 line-clamp-3 drop-shadow-md">{movie.overview}</p>
 
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 mb-8">
                             <Link
                                 href={`/watch/movie/${movie.id}`}
                                 className="flex items-center gap-2 bg-white text-black px-8 py-3 rounded-lg font-bold text-xl hover:bg-zinc-200 focus:bg-red-600 focus:text-white transition-colors"
@@ -91,30 +91,20 @@ export default function MovieDetailsPage({ params }: { params: { id: string } })
                                 <Play fill="currentColor" /> Play
                             </Link>
                         </div>
-                    </div>
-                </div>
 
-                {/* Additional Info Section */}
-                <div className="px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <div className="lg:col-span-2">
-                        {/* Description is already in the overlay, so we might not need this column if empty, 
-                            but keeping the grid structure for the right-side info. 
-                            If the user wants it completely empty on the left, we can adjust. 
-                            For now, just removing Cast and Similar as requested. */}
-                    </div>
-
-                    <div className="text-zinc-400 text-sm space-y-4">
-                        <div>
-                            <span className="block text-zinc-500 mb-1">Genres</span>
-                            <span className="text-white">{movie.genres?.map((g: any) => g.name).join(', ')}</span>
-                        </div>
-                        <div>
-                            <span className="block text-zinc-500 mb-1">Original Language</span>
-                            <span className="text-white uppercase">{movie.original_language}</span>
-                        </div>
-                        <div>
-                            <span className="block text-zinc-500 mb-1">Production</span>
-                            <span className="text-white">{movie.production_companies?.map((c: any) => c.name).join(', ')}</span>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 text-xs text-zinc-400">
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Genres</span>
+                                <span className="text-white">{movie.genres?.map((g: any) => g.name).join(', ')}</span>
+                            </div>
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Language</span>
+                                <span className="text-white uppercase">{movie.original_language}</span>
+                            </div>
+                            <div>
+                                <span className="block text-zinc-500 mb-1">Production</span>
+                                <span className="text-white">{movie.production_companies?.slice(0, 2).map((c: any) => c.name).join(', ')}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
