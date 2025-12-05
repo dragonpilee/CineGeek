@@ -57,7 +57,7 @@
 | **Core Framework** | Next.js (React) |
 | **Language** | TypeScript |
 | **Styling** | Tailwind CSS |
-| **Data Sources** | TMDb API, Vidsrc |
+| **Data Sources** | TMDb API, vidsrc |
 | **Infrastructure** | Docker, Docker Compose |
 
 ---
@@ -76,4 +76,5 @@
   <sub>Developed with ❤️ by Cinegeek</sub><br>
   <sub>Optimized for Fire TV & Google TV</sub>
 </div>
+
 
