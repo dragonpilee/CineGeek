@@ -1,15 +1,15 @@
 # FireGeek 🎬
-> **Containerized Movie & Series Streaming Platform for Firestick**
+> **Containerized Movie & Series Streaming Platform for Fire TV & Google TV**
 
 ![Status](https://img.shields.io/badge/Status-Beta-blue?style=for-the-badge) ![Docker](https://img.shields.io/badge/Deployment-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Next.js](https://img.shields.io/badge/Framework-Next.js-black?style=for-the-badge&logo=next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-**FireGeek** is a premium, fully dockerized streaming application optimized for **Amazon Silk on Firestick**. It offers a Netflix-like experience with spatial navigation, smart recommendations, and a vast library of movies and series.
+**FireGeek** is a premium, fully dockerized streaming application optimized for **Fire TV & Google TV**. It offers a Netflix-like experience with spatial navigation, smart recommendations, and a vast library of movies and series.
 
 ---
 
 ## ✨ Features
 
-- **📺 Firestick Optimized**: Large touch targets, spatial navigation (D-Pad support), and high contrast UI.
+- **📺 Fire TV & Google TV Optimized**: Large touch targets, spatial navigation (D-Pad support), and high contrast UI.
 - **🎥 Smart Browsing**: Explore collections sorted by genre, release date, or popularity.
 - **🔍 Unified Search**: Instantly find both Movies and TV Series with smart filtering.
 - **🧠 Recommendation Engine**: Personalized suggestions tailored to your viewing history.
@@ -74,6 +74,6 @@
 
 <div align="center">
   <sub>Developed with ❤️ by Cinegeek</sub><br>
-  <sub>Optimized for Firestick, Fire TV, Android TV & Google TV</sub>
+  <sub>Optimized for Fire TV & Google TV</sub>
 </div>
 

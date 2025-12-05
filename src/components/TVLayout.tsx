@@ -16,7 +16,7 @@ export default function TVLayout({ children }: { children: ReactNode }) {
                 </div>
                 <footer className="py-6 text-center text-zinc-600 text-xs font-medium">
                     <p>Developed by Cinegeek</p>
-                    <p className="mt-1 opacity-75">Optimized for Firestick, Fire TV, Android TV & Google TV</p>
+                    <p className="mt-1 opacity-75">Optimized for Fire TV & Google TV</p>
                 </footer>
             </div>
         </div>
